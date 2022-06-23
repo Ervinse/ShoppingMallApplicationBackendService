@@ -14,6 +14,8 @@
 
 项目使用springboot搭建,数据库使用mysql,持久层使用mybatis-plus
 
+前台app项目传送门：https://github.com/Ervinse/ShoppingMallApplication.git
+
 
 ### 功能说明
 - 提供用户登录,注册功能
