@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:命名空间，与下面语句的id一起组成查询的标识(相当于文件夹功能)-->
+<!--namespace在使用动态代理时需要和dao接口的全类名相同-->
+<mapper namespace="pers.ervinse.mapper.CartMapper">
+
+
+
+    <resultMap id="CartMapper" type="pers.ervinse.domain.Goods">
+        <id property="name" column="goods_name"/>
+        <result property="number" column="goods_number"/>
+        <result property="isSelected" column="isSelected"/>
+    </resultMap>
+
+    <resultMap id="AllGoodsMapper" type="pers.ervinse.domain.Goods">
+        <id property="name" column="name"/>
+        <result property="number" column="goods_number"/>
+        <result property="isSelected" column="isSelected"/>
+        <result property="description" column="description"/>
+        <result property="price" column="price"/>
+        <result property="location" column="location"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+    <!--获取所有购物车商品-->
+    <select id="selectAll" resultMap="AllGoodsMapper">
+        SELECT name,goods_number,isSelected,description,price,location,image FROM cart,goods
+        WHERE cart.goods_name = goods.name
+
+    </select>
+
+    <!--根据名字获取商品-->
+    <select id="selectByName" parameterType="pers.ervinse.domain.Goods" resultMap="CartMapper">
+        SELECT goods_name FROM cart
+        WHERE goods_name = #{name}
+        limit 1
+
+    </select>
+
+    <!--添加商品到cart表-->
+    <insert id="insertToCart"  parameterType="pers.ervinse.domain.Goods" >
+        insert into cart (goods_name,goods_number,isSelected)
+        values (#{name},#{number},#{isSelected})
+    </insert>
+
+    <!--根据名字删除商品-->
+    <delete id="deleteByName" parameterType="pers.ervinse.domain.Goods">
+        delete from cart
+        where goods_name = #{name}
+    </delete>
+
+    <update id="updateCartByName" parameterType="pers.ervinse.domain.Goods">
+        update cart set
+        goods_number = #{number},
+        isSelected = #{isSelected}
+        where goods_name = #{name}
+
+    </update>
+
+</mapper>
