@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pers.ervinse</groupId>
-    <artifactId>ShoppingMallApplication</artifactId>
+    <artifactId>ShoppingMallApplicationBackendService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ShoppingMallApplication</name>
-    <description>ShoppingMallApplication</description>
+    <name>ShoppingMallApplicationBackendService</name>
+    <description>ShoppingMallApplicationBackendService</description>
     <properties>
         <java.version>11</java.version>
     </properties>
