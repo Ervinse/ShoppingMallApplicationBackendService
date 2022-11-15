@@ -1,0 +1,24 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    url: jdbc:mysql://localhost:3306/shopping_mail_application?useSSL=false&serverTimezone=UTC&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#开启mybatis-plus日志
+mybatis-plus:
+  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #开启自动驼峰命名规则（camel case）映射
+    mapUnderscoreToCamelCase: true
+
+  #设置 mapper接口中 自定义方法的sql语句 所对应的XML文件位置
+  #(Maven 多模块项目的扫描路径需以classpath*:开头(即加载多个 jar 包下的 XML 文件))
+  mapper-locations: classpath*:pers/ervinse/mapper/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+

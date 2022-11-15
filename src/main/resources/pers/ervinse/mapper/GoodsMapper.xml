@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:命名空间，与下面语句的id一起组成查询的标识(相当于文件夹功能)-->
+<!--namespace在使用动态代理时需要和dao接口的全类名相同-->
+<mapper namespace="pers.ervinse.mapper.GoodsMapper">
+
+    <!--
+        resultMap用于设置 实体类中的变量名 和 数据库中表的字段名 的映射
+        type：设置该resultMap映射的类名，这里使用了SqlMapConfig.xml中typeAliases标签下设置的别名User
+        id标签：配置该表中主键的映射关系
+        result标签：配置该表中普通字段的映射关系
+        property：实体类中的变量
+        column：表中对应的字段名
+    -->
+    <resultMap id="GoodsMap" type="pers.ervinse.domain.Goods">
+        <id property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="price" column="price"/>
+        <result property="location" column="location"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+
+    <!--根据条件查询-->
+    <select id="selectAll"  resultMap="GoodsMap">
+        select name,description,location,price,image from goods order by id
+    </select>
+
+    <!--根据条件查询-->
+    <select id="selectHotGoods"  resultMap="GoodsMap">
+        select name,description,location,price,image from goods order by id limit 8
+    </select>
+
+</mapper>
